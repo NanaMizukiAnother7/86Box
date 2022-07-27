@@ -4685,7 +4685,7 @@ const device_t gd5428_boch_isa_device = {
     { .available = gd5428_boca_isa_available },
     .speed_changed = gd54xx_speed_changed,
     .force_redraw = gd54xx_force_redraw,
-    .config = gd5428_config
+    .config = gd5426_config
 };
 
 const device_t gd5428_vlb_device = {
