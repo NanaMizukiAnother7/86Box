@@ -1,4 +1,4 @@
-/*
+*
  * 86Box	A hypervisor and IBM PC system emulator that specializes in
  *		running old operating systems and software designed for IBM
  *		PC systems and compatibles from 1981 through fairly recent
@@ -49,6 +49,7 @@
 #define BIOS_GD5426_MCA_PATH		"roms/video/cirruslogic/Reply.BIN"
 #define BIOS_GD5428_DIAMOND_B1_VLB_PATH	"roms/video/cirruslogic/Diamond SpeedStar PRO VLB v3.04.bin"
 #define BIOS_GD5428_ISA_PATH		"roms/video/cirruslogic/5428.bin"
+#define BIOS_GD5428_BOCA_ISA_PATH		"roms/video/cirruslogic/boca_gd5428_1.30b.bin"
 #define BIOS_GD5428_MCA_PATH		"roms/video/cirruslogic/SVGA141.ROM"
 #define BIOS_GD5428_PATH		"roms/video/cirruslogic/vlbusjapan.BIN"
 #define BIOS_GD5429_PATH		"roms/video/cirruslogic/5429.vbi"
@@ -3907,6 +3908,8 @@ static void
 					romfn = BIOS_GD5426_MCA_PATH;
 				else
 					romfn = BIOS_GD5428_ISA_PATH;
+				else
+					romfn = BIOS_GD5428_BOCA_ISA_PATH;
 			}
 		}
 		break;
@@ -4185,6 +4188,12 @@ static int
 gd5428_isa_available(void)
 {
     return rom_present(BIOS_GD5428_ISA_PATH);
+}
+
+static int
+gd5428_boca_isa_available(void)
+{
+    return rom_present(BIOS_GD5428_BOCA_ISA_PATH);
 }
 
 static int
@@ -4663,6 +4672,20 @@ const device_t gd5428_isa_device = {
     .speed_changed = gd54xx_speed_changed,
     .force_redraw = gd54xx_force_redraw,
     .config = gd5426_config
+};
+
+const device_t gd5428_boch_isa_device = {
+    .name = "Cirrus Logic GD5428 (ISA) (BOCA Research 4610)",
+    .internal_name = "cl_gd5428_boca_isa",
+    .flags = DEVICE_AT | DEVICE_ISA,
+    .local = CIRRUS_ID_CLGD5428,
+    .init = gd54xx_init,
+    .close = gd54xx_close,
+    .reset = gd54xx_reset,
+    { .available = gd5428_boca_isa_available },
+    .speed_changed = gd54xx_speed_changed,
+    .force_redraw = gd54xx_force_redraw,
+    .config = gd5428_config
 };
 
 const device_t gd5428_vlb_device = {
