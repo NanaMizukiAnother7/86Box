@@ -883,7 +883,7 @@ const machine_t machines[] = {
         .vid_device = NULL
     },
     {
-        .name = "[8088] Phoenix XT clone",
+        .name = "[8088] Phoenix Technologies XT clone",
         .internal_name = "pxxt",
         .type = MACHINE_TYPE_8088,
         .chipset = MACHINE_CHIPSET_DISCRETE,
@@ -2126,9 +2126,43 @@ const machine_t machines[] = {
         .device = &compaq_plasma_device,
         .vid_device = NULL
     },
+	{
+        .name = "[ISA] FTC FT-286 (Access Methods i286 clone)",
+        .internal_name = "ft286",
+        .type = MACHINE_TYPE_286,
+        .chipset = MACHINE_CHIPSET_DISCRETE,
+        .init = machine_at_ft286_init,
+        .pad = 0,
+        .pad0 = 0,
+        .pad1 = MACHINE_AVAILABLE,
+        .pad2 = 0,
+        .cpu = {
+            .package = CPU_PKG_286,
+            .block = CPU_BLOCK_NONE,
+            .min_bus = 0,
+            .max_bus = 0,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi = 0,
+            .max_multi = 0
+        },
+        .bus_flags = MACHINE_AT,
+        .flags = MACHINE_FLAGS_NONE,
+        .ram = {
+            .min = 512,
+            .max = 16384,
+            .step = 512
+        },
+        .nvrmask = 127,
+        .kbc = KBC_UNKNOWN,
+        .kbc_p1 = 0,
+        .gpio = 0,
+        .device = NULL,
+        .vid_device = NULL
+    },
     /* Has IBM AT KBC firmware. */
     {
-        .name = "[ISA] MR BIOS 286 clone",
+        .name = "[ISA] MR BIOS i286 clone",
         .internal_name = "mr286",
         .type = MACHINE_TYPE_286,
         .chipset = MACHINE_CHIPSET_DISCRETE,
@@ -2412,7 +2446,7 @@ const machine_t machines[] = {
     },
     /* Has Quadtel KBC firmware. */
     {
-        .name = "[GC103] Quadtel 286 clone",
+        .name = "[GC103] Quadtel i286 clone",
         .internal_name = "quadt286",
         .type = MACHINE_TYPE_286,
         .chipset = MACHINE_CHIPSET_GC103,
@@ -2552,7 +2586,7 @@ const machine_t machines[] = {
     },
     /* Has IBM AT KBC firmware. */
     {
-        .name = "[NEAT] Phoenix 286 clone",
+        .name = "[NEAT] Phoenix Technologies i286 clone",
         .internal_name = "px286",
         .type = MACHINE_TYPE_286,
         .chipset = MACHINE_CHIPSET_NEAT,
@@ -3155,7 +3189,7 @@ const machine_t machines[] = {
     /* I'm going to assume this has a standard/generic IBM-compatible AT KBC
        firmware until the board is identified. */
     {
-        .name = "[ALi M1217] MR BIOS 386SX clone",
+        .name = "[ALi M1217] MR BIOS i386SX clone",
         .internal_name = "mr1217",
         .type = MACHINE_TYPE_386SX,
         .chipset = MACHINE_CHIPSET_ALI_M1217,
@@ -3405,7 +3439,7 @@ const machine_t machines[] = {
     },
     /* Has IBM AT KBC firmware. */
     {
-        .name = "[NEAT] DTK 386SX clone",
+        .name = "[NEAT] DTK i386SX clone",
         .internal_name = "dtk386",
         .type = MACHINE_TYPE_386SX,
         .chipset = MACHINE_CHIPSET_NEAT,
@@ -3766,7 +3800,7 @@ const machine_t machines[] = {
 
     /* 386DX machines */
     {
-        .name = "[ACC 2168] AMI 386DX clone",
+        .name = "[ACC 2168] American Megatrends i386DX clone",
         .internal_name = "acc386",
         .type = MACHINE_TYPE_386DX,
         .chipset = MACHINE_CHIPSET_ACC_2168,
@@ -4052,7 +4086,7 @@ const machine_t machines[] = {
     /* The BIOS sends commands C9 without a parameter and D5, both of which are
        Phoenix MultiKey commands. */
     {
-        .name = "[OPTi 495] Award 486 clone",
+        .name = "[OPTi 495] Award Software i486 clone",
         .internal_name = "award495",
         .type = MACHINE_TYPE_386DX_486,
         .chipset = MACHINE_CHIPSET_OPTI_495,
@@ -4270,7 +4304,7 @@ const machine_t machines[] = {
        the BIOS also explicitly expects command A1 to return a 'F', so it looks like
        the JetKey 5 is a clone of AMIKey type F. */
     {
-        .name = "[CS4031] AMI 486 CS4031",
+        .name = "[CS4031] American Megatrends i486 clone",
         .internal_name = "cs4031",
         .type = MACHINE_TYPE_486,
         .chipset = MACHINE_CHIPSET_CT_CS4031,
@@ -4628,6 +4662,42 @@ const machine_t machines[] = {
         .gpio = 0,
         .device = NULL,
         .vid_device = NULL
+    },
+    {
+        .name = "[ACC 2168] Packard Bell PB430",
+        .internal_name = "pb430",
+        .type = MACHINE_TYPE_486_S2,
+        .chipset = MACHINE_CHIPSET_ACC_2168,
+        .init = machine_at_pb430_init,
+        .pad = 0,
+        .pad0 = 0,
+        .pad1 = MACHINE_AVAILABLE,
+        .pad2 = 0,
+        .cpu = {
+            .package = CPU_PKG_SOCKET3,
+            .block = CPU_BLOCK_NONE,
+            .min_bus = 0,
+            .max_bus = 0,
+            .min_voltage = 0,
+            .max_voltage = 0,
+            .min_multi = 0,
+            .max_multi = 0
+        },
+        .bus_flags = MACHINE_PS2,
+        .flags = MACHINE_IDE | MACHINE_VIDEO,
+        .ram = {
+            .min = 4096,
+            .max = 65536,
+            .step = 1024
+        },
+        .nvrmask = 127,
+        .kbc = KBC_UNKNOWN,
+        .kbc_p1 = 0,
+        .gpio = 0,
+        .device = &gd5428_onboard_device,
+        .vid_device = NULL,
+        .snd_device = NULL,
+        .net_device = NULL
     },
     /* Uses an ACER/NEC 90M002A (UPD82C42C, 8042 clone) with unknown firmware (V4.01H). */
     {

@@ -328,6 +328,29 @@ machine_at_pb410a_init(const machine_t *model)
     return ret;
 }
 
+int
+machine_at_pb430_init(const machine_t *model)
+{
+    int ret;
+
+    ret = bios_load_linear("roms/machines/pb430/pb430-m27c1001-635fbb3b9d553659728598.bin",
+                           0x000e0000, 131072, 0);
+
+    if (bios_only || !ret)
+        return ret;
+
+    machine_at_ibm_common_ide_init(model);
+
+    device_add(&keyboard_ps2_device);
+	device_add(&acc3221_device);
+    device_add(&acc2168_device);
+    device_add(&phoenix_486_jumper_device);
+
+    if (gfxcard[0] == VID_INTERNAL)
+        device_add(&gd5428_onboard_device);
+
+    return ret;
+}
 
 int
 machine_at_vect486vl_init(const machine_t *model)	// has HDC problems

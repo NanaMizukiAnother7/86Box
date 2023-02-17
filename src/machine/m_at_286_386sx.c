@@ -214,6 +214,25 @@ machine_at_neat_ami_init(const machine_t *model)
     return ret;
 }
 
+int
+machine_at_ft286_init(const machine_t *model)
+{
+    int ret;
+
+    ret = bios_load_interleaved("roms/machines/ft286/286-Access methods-ROM2.BIN",
+				"roms/machines/ft286/286-Access methods-ROM4.BIN",
+				0x000f0000, 65536, 0);
+
+    if (bios_only || !ret)
+	return ret;
+
+    machine_at_common_init(model);
+	
+	device_add(&keyboard_at_ami_device);
+		
+    return ret;
+}
+
 
 int
 machine_at_px286_init(const machine_t *model)

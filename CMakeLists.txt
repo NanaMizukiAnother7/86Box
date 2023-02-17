@@ -39,8 +39,8 @@ if(MUNT_EXTERNAL)
     list(APPEND VCPKG_MANIFEST_FEATURES "munt")
 endif()
 
-project(86Box
-    VERSION 3.6
+project(86BoxPLUS
+    VERSION 3.6.1
     DESCRIPTION "Emulator of x86-based systems"
     HOMEPAGE_URL "https://86box.net"
     LANGUAGES C CXX)
