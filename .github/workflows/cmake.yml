@@ -40,9 +40,9 @@ jobs:
           - name: Debug
             preset: debug
             slug: -Debug
-          - name: Dev
+          - name: Experimental
             preset: experimental
-            slug: -Dev
+            slug: -Experimental
         dynarec:
           - name: ODR
             new: off
@@ -110,9 +110,9 @@ jobs:
           - name: Debug
             preset: debug
             slug: -Debug
-          - name: Dev
+          - name: Experimental
             preset: experimental
-            slug: -Dev
+            slug: -Experimental
         dynarec:
           - name: ODR
             new: off
@@ -206,9 +206,9 @@ jobs:
           - name: Debug
             preset: debug
             slug: -Debug
-          - name: Dev
+          - name: Experimental
             preset: experimental
-            slug: -Dev
+            slug: -Experimental
         dynarec:
           - name: ODR
             new: off
@@ -258,9 +258,9 @@ jobs:
           - name: Debug
             preset: debug
             slug: -Debug
-          - name: Dev
+          - name: Experimental
             preset: experimental
-            slug: -Dev
+            slug: -Experimental
         dynarec:
           - name: ODR
             new: off
